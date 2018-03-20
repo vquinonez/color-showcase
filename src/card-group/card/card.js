@@ -14,7 +14,7 @@ class Card extends Component {
       <div className="card" style={{backgroundColor: color}}>
         
         <div className="footer">
-            <h3>{this.props.color.toUpperCase()}</h3>
+            <h3>#{this.props.color.toUpperCase()}</h3>
             <p>{color.toUpperCase()}</p>
             <p> {this.props.number}% </p>
         </div>

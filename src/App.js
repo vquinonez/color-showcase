@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import InputValue from './input-values/input-values';
-import CardGroup from './card-group/card-group';
+import Color from './color/color';
+import AddRemove from './add-remove/add-remove';
 
 class App extends Component {
 
@@ -11,29 +11,34 @@ class App extends Component {
     super(props);
 
     this.state = {
-      color: '',
-      number: ''
+      items: 1
     }
 
   }
 
   render() {
+    let groups = [];
+
+    for(let i = 0; i < this.state.items; i++) {
+      groups.push(<Color key={i}/>);
+    }
+
     return (
       <div className="App">
-        <InputValue onChangeColor={this.setColor} onChangeNumber={this.setNumber.bind(this)}></InputValue>
-        <div className="container">
-          <CardGroup mainColor={this.state.color} number={this.state.number}></CardGroup>
-        </div>
+        { groups }
+        <AddRemove add={this.addItem.bind(this)} remove={this.removeItem.bind(this)} />
       </div>
     );
   }
 
-  setColor = (e) => {
-    this.setState({color: e.target.value});
+  addItem() {
+    this.setState({items: this.state.items + 1});
   }
 
-  setNumber(e) {
-    this.setState({number: e.target.value});
+  removeItem() {
+    if ( this.state.items > 1) {
+      this.setState({items: this.state.items - 1});
+    }
   }
 
 }
